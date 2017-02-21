@@ -1,0 +1,54 @@
+{
+  "name": "socket-pack",
+  "version": "1.0.0",
+  "description": "support pack and unpack for socket data",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "standard --fix && npm-ensure -t deps",
+    "test": "npm run lint && npm run test-local",
+    "test-local": "mocha test/**/*.test.js",
+    "test-cov": "istanbul cover _mocha test/**/*.test.js",
+    "ci": "npm run lint && npm run test-cov",
+    "beta": "npm test && git release $npm_package_version && npm publish --tag beta",
+    "release": "npm test && npm-ensure -t changelog && git release $npm_package_version && npm publish",
+    "precommit": "standard && npm-ensure -t deps"
+  },
+  "ensure": {
+    "deps": {
+      "checkDirs": [
+        "lib/**/*",
+        "bin/*"
+      ]
+    }
+  },
+  "standard": {
+    "global": [
+      "describe",
+      "it",
+      "beforeEach",
+      "afterEach"
+    ],
+    "ignore": [
+      "/test"
+    ]
+  },
+  "dependencies": {
+    "debug": "^2.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2",
+    "npm-ensure": "^1.0.0",
+    "husky": "0.x",
+    "istanbul": "*",
+    "standard": "^8.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yibn2008/socket-pack.git"
+  },
+  "keywords": [
+    "socket-pack"
+  ],
+  "author": "zoujie.wzj",
+  "license": "ISC"
+}
